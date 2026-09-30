@@ -1,0 +1,6 @@
+{
+  "timezone": "Asia/Shanghai",
+  "extra_roots": [
+    "/path/to/old/codex/sessions"
+  ]
+}

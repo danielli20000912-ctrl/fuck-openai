@@ -1,0 +1,119 @@
+{
+  "checked": "2026-09-30",
+  "unit": "USD per 1M tokens (OpenAI API Standard 档)",
+  "note": "一张现价表套用到全部历史用量。gpt-5.6-sol 现价是促销价（官方写至少到 2026-11-21），据第三方记载 2026-08-21 前为 5/0.5/30，本表不分时段。OpenAI 调价时改这个文件。",
+  "long_context": {
+    "threshold_input_tokens": 272000,
+    "input_mult": 2.0,
+    "cached_mult": 2.0,
+    "output_mult": 1.5,
+    "source": "https://developers.openai.com/api/docs/models/gpt-6-astra ：Prompts with more than 272K input tokens are priced at 2x input and cache rates and 1.5x output for the full request."
+  },
+  "service_tiers": {
+    "priority": {
+      "mult": 2.0,
+      "source": "https://developers.openai.com/api/docs/guides/fast-mode ：Fast mode costs twice the corresponding Standard rate（含长上下文档）；Priority processing was renamed Fast mode on July 30, 2026"
+    },
+    "fast": {
+      "mult": 2.0,
+      "source": "同上"
+    },
+    "flex": {
+      "mult": 0.5,
+      "source": "https://developers.openai.com/api/docs/models/gpt-6-astra ：Batch and Flex are priced at 50% of Standard rates"
+    }
+  },
+  "rate_card": {
+    "credits_per_usd": 25,
+    "source": "https://help.openai.com/en/articles/20001106 ChatGPT Rate Card（只适用于 Business/Enterprise 按点计费）：每百万 token 的点数 = API 价 × 25。个人 Plus/Pro 没有公开费率，本工具只把它当跨周比较的尺子"
+  },
+  "aliases": {
+    "codex-auto-review": "gpt-5.6-terra"
+  },
+  "alias_sources": {
+    "codex-auto-review": "OpenAI 没公布这个模型（Codex「帮我审批」用的模型）的价格，也没说底层是哪个模型；本工具按 gpt-5.6-terra 计（作者核实过的对应关系）。ccusage 新版把它当 gpt-5.6-luna，价格只有 terra 的 1/10。有更准确的信息欢迎提 issue"
+  },
+  "models": {
+    "gpt-6-astra": {
+      "input": 10.0,
+      "cached_input": 1.0,
+      "output": 50.0,
+      "fast_mult": 2.0,
+      "source": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "verified": "2026-09-30 打开原页核对"
+    },
+    "gpt-6.1-sol": {
+      "input": 2.0,
+      "cached_input": 0.1,
+      "output": 10.0,
+      "fast_mult": 2.0,
+      "source": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+      "verified": "原页（2026-09-30 读取）；与费率卡 50/2.5/250 点 ÷25 一致"
+    },
+    "gpt-6-sol": {
+      "input": 2.0,
+      "cached_input": 0.2,
+      "output": 10.0,
+      "fast_mult": 2.0,
+      "source": "https://developers.openai.com/api/docs/models/gpt-6-sol",
+      "verified": "原页（2026-09-30 读取）；与费率卡 50/5/250 点 ÷25 一致"
+    },
+    "gpt-6-luna": {
+      "input": 0.1,
+      "cached_input": 0.01,
+      "output": 0.5,
+      "fast_mult": 2.0,
+      "source": "https://developers.openai.com/api/docs/models/gpt-6-luna",
+      "verified": "原页（2026-09-30 读取）；与费率卡 2.5/0.25/12.5 点 ÷25 一致"
+    },
+    "gpt-5.6-sol": {
+      "input": 4.0,
+      "cached_input": 0.4,
+      "output": 20.0,
+      "fast_mult": 2.0,
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.6-sol",
+      "verified": "2026-09-30 核对；促销价，官方写至少到 2026-11-21，未公布原价"
+    },
+    "gpt-5.6-terra": {
+      "input": 2.0,
+      "cached_input": 0.2,
+      "output": 12.0,
+      "fast_mult": 2.0,
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+      "verified": "2026-09-30 核对；快速模式倍数页面未写，按 fast-mode 指南对 GPT-5.6 系列的 2 倍"
+    },
+    "gpt-5.6-luna": {
+      "input": 0.2,
+      "cached_input": 0.02,
+      "output": 1.2,
+      "fast_mult": 2.0,
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
+      "verified": "原页（2026-09-30 读取）；与费率卡 5/0.5/30 点 ÷25 一致"
+    },
+    "gpt-5.5": {
+      "input": 5.0,
+      "cached_input": 0.5,
+      "output": 30.0,
+      "fast_mult": 2.0,
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.5",
+      "verified": "2026-09-30 核对价格；快速模式倍数官方页未写，按 2 倍（ccusage 用 2.5，未证实）"
+    },
+    "gpt-5.4": {
+      "input": 2.5,
+      "cached_input": 0.25,
+      "output": 15.0,
+      "fast_mult": 2.0,
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.4",
+      "verified": "2026-09-30 核对价格；快速模式倍数未写，按 2 倍"
+    },
+    "gpt-5.3-codex-spark": {
+      "input": 1.75,
+      "cached_input": 0.175,
+      "output": 14.0,
+      "fast_mult": 1.0,
+      "long_context": false,
+      "source": "无官方 API 价（研究预览，2026-09-14 已下线）；借用 gpt-5.3-codex 的价",
+      "verified": "代用价，未证实"
+    }
+  }
+}
