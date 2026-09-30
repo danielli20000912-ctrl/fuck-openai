@@ -63,8 +63,8 @@ OpenAI 帮助中心 [About ChatGPT Pro tiers](https://help.openai.com/en/article
 ### 1. 周额度实时价值
 
 ```bash
-python3 codex_cost.py quota              # 本周额度值多少钱 + 历史各周
-python3 codex_cost.py quota --watch 60   # 每 60 秒刷新一次
+fuck-openai quota              # 本周额度值多少钱 + 历史各周
+fuck-openai quota --watch 60   # 每 60 秒刷新一次
 ```
 
 Codex 每次请求返回时，都会把服务器当时的「周额度已用百分比」写进本地日志。工具把一个周窗口里的请求按 API 价折成美元，
@@ -85,10 +85,10 @@ Codex 每次请求返回时，都会把服务器当时的「周额度已用百�
 ### 2. 用量折合 API 价值
 
 ```bash
-python3 codex_cost.py                          # 全部历史，按月
-python3 codex_cost.py --by day --since 2026-09-01
-python3 codex_cost.py --provider all           # 连同第三方供应商
-python3 codex_cost.py --json > rows.json       # 逐请求明细
+fuck-openai                          # 全部历史，按月
+fuck-openai --by day --since 2026-09-01
+fuck-openai --provider all           # 连同第三方供应商
+fuck-openai --json > rows.json       # 逐请求明细
 ```
 
 按月/周/日、按客户端、按模型、按速度档（快速模式）分别列出请求数、token、API 价值，以及其中多少是长上下文和快速模式的加价。
@@ -98,18 +98,21 @@ python3 codex_cost.py --json > rows.json       # 逐请求明细
 
 ## 安装与用法
 
-需要 Python 3.9 以上，只用标准库，不联网，数据不出本机。
+单个二进制，不依赖任何库，不联网，数据不出本机。用 Go 1.22 以上安装：
 
 ```bash
-git clone https://github.com/danielli20000912-ctrl/fuck-openai.git
-cd fuck-openai
-python3 codex_cost.py quota
+go install github.com/danielli20000912-ctrl/fuck-openai@latest
+fuck-openai quota
 ```
 
-- 第一次运行会把会话记录全读一遍（作者 22GB 约 70 秒），结果缓存在 `.cache/`，之后只读新增的文件，几秒出结果。
-- 默认扫 `$CODEX_HOME/sessions` 和 `$CODEX_HOME/archived_sessions`。旧会话搬到别处了的，复制 `config.example.json` 为
-  `config.json`，把目录写进 `extra_roots`。
-- 价格表在 `prices.json`，每个模型一行，都附官方页面链接。OpenAI 调价时改这个文件。
+或者自己编译：`git clone` 之后在目录里 `go build`。
+
+- 第一次运行会把会话记录全读一遍（作者 22GB 约 60 秒），结果缓存在 `~/.cache/fuck-openai/`，之后只读新增的文件，不到 1 秒出结果。
+- 默认扫 `$CODEX_HOME/sessions` 和 `$CODEX_HOME/archived_sessions`。旧会话搬到别处了的，照 `config.example.json`
+  写一份 `~/.config/fuck-openai/config.json`，把目录写进 `extra_roots`；缓存位置用 `cache_dir` 改。
+- 价格表 `prices.json` 编译进了程序，每个模型一行，都附官方页面链接。OpenAI 调价时可以用 `--prices` 或配置里的 `prices`
+  指向自己改过的价格表，不用重新编译。
+- 报告顶部的「会话库」自查要用系统里的 `sqlite3` 命令（macOS 自带），没有就跳过这一项。
 
 ## 增加了哪些功能
 
@@ -143,8 +146,9 @@ python3 codex_cost.py quota
 
 ## 其他
 
-- 测试：`python3 -m unittest discover -s tests`（人造会话记录，金额手算）。
-- `checks/` 里是作者自查用的脚本：累计值自洽检查、会话库与日志文件的覆盖检查、与 ccusage 的逐模型 token 数对照。
+- 测试：`go test ./...`（人造会话记录，金额手算）。
+- 自查命令：`fuck-openai check identity`（累计用量与每次用量是否自洽）、`check coverage`（会话库登记的会话有没有找不到日志文件的）、
+  `check ccusage`（与 ccusage 的逐模型 token 数对照）。
 - 本项目与 OpenAI 无任何关系。实测数据来自作者自己的账号。欢迎把你的 `quota` 输出（去掉隐私）贴到 issue 里，一起攒数据。
 
 MIT License

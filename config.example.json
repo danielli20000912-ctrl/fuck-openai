@@ -2,5 +2,7 @@
   "timezone": "Asia/Shanghai",
   "extra_roots": [
     "/path/to/old/codex/sessions"
-  ]
+  ],
+  "cache_dir": "/path/to/cache/dir",
+  "prices": "/path/to/your/prices.json"
 }

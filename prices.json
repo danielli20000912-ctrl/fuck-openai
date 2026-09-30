@@ -31,7 +31,7 @@
     "codex-auto-review": "gpt-5.6-terra"
   },
   "alias_sources": {
-    "codex-auto-review": "OpenAI 没公布这个模型（Codex「帮我审批」用的模型）的价格，也没说底层是哪个模型；本工具按 gpt-5.6-terra 计（作者核实过的对应关系）。ccusage 新版把它当 gpt-5.6-luna，价格只有 terra 的 1/10。有更准确的信息欢迎提 issue"
+    "codex-auto-review": "OpenAI 没公布这个模型（Codex「帮我审批」用的模型）的价格，也没说底层是哪个模型；本工具按 gpt-5.6-terra 计（作者核实过的对应关系）。有更准确的信息欢迎提 issue"
   },
   "models": {
     "gpt-6-astra": {
@@ -96,7 +96,7 @@
       "output": 30.0,
       "fast_mult": 2.0,
       "source": "https://developers.openai.com/api/docs/models/gpt-5.5",
-      "verified": "2026-09-30 核对价格；快速模式倍数官方页未写，按 2 倍（ccusage 用 2.5，未证实）"
+      "verified": "2026-09-30 核对价格；快速模式倍数官方页未写，按 2 倍（未证实）"
     },
     "gpt-5.4": {
       "input": 2.5,
