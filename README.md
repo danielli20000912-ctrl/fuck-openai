@@ -101,7 +101,7 @@ fuck-openai --json > rows.json       # 逐请求明细
 单个二进制，不依赖任何库，不联网，数据不出本机。用 Go 1.22 以上安装：
 
 ```bash
-go install github.com/danielli20000912-ctrl/fuck-openai@main
+go install github.com/danielli20000912-ctrl/fuck-openai@latest
 fuck-openai quota
 ```
 
